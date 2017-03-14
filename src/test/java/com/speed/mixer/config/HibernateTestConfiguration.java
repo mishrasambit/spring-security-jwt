@@ -21,7 +21,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan({ "com.speed.mixer" })
+@ComponentScan({ "com.speed.mixer.model","com.speed.mixer.dao" })
 @PropertySource(value = { "classpath:testapplication.properties" })
 public class HibernateTestConfiguration {
 
