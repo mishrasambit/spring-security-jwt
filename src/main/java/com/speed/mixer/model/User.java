@@ -31,7 +31,7 @@ public class User {
     private String lastName;
 
     @NotEmpty
-    @Column(name="EMAIL", nullable=false)
+    @Column(name="EMAIL", unique=true, nullable=false)
     private String email;
 
     /*@NotEmpty

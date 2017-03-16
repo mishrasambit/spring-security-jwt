@@ -4,7 +4,9 @@ import com.speed.mixer.dao.AbstractDao;
 import com.speed.mixer.dao.UserDao;
 import com.speed.mixer.model.User;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -29,5 +31,23 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
         persist(user);
     }
 
-
+    @Override
+    public User findByUserEmail(String email){
+        User user = null;
+        Criteria criteria = createEntityCriteria();
+        Criterion emailidcheck = Restrictions.eq("email",email );
+        criteria.add(emailidcheck);
+        List<User> userList = criteria.list();
+        if(userList!=null && userList.size()!=0){
+            if(userList.size()>1) {
+                System.out.println("Multiple record selected::"+userList.size());
+                user = userList.get(0);
+            }else{
+                user = userList.get(0);
+            }
+        }else{
+            System.out.println("No record selected::");
+        }
+        return user;
+    }
 }

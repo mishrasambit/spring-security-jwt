@@ -11,4 +11,6 @@ public interface UserDao {
     List<User> findAllUsers();
 
     void saveUser(User user);
+
+    User findByUserEmail(String email);
 }
